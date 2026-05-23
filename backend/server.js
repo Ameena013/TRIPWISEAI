@@ -37,8 +37,8 @@ const authLimiter = rateLimit({
   message: { error: 'Too many auth attempts, please try again later.' },
 });
 
-app.use('https://your-railway-url.up.railway.app/api/', limiter);
-app.use('https://your-railway-url.up.railway.app/api/auth/', authLimiter);
+app.use('https://tripwiseai.onrender.com/api/', limiter);
+app.use('https://tripwiseai.onrender.com/api/auth/', authLimiter);
 
 // ─── Body Parsing ──────────────────────────────────────────────────────────────
 app.use(express.json({ limit: '10mb' }));
@@ -46,15 +46,15 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(morgan('dev'));
 
 // ─── Static Files (local uploads) ─────────────────────────────────────────────
-app.use('https://your-railway-url.up.railway.app/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('https://tripwiseai.onrender.com/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-app.use('https://your-railway-url.up.railway.app/api/auth', authRoutes);
-app.use('https://your-railway-url.up.railway.app/api/upload', uploadRoutes);
-app.use('https://your-railway-url.up.railway.app/api/itineraries', itineraryRoutes);
+app.use('https://tripwiseai.onrender.com/api/auth', authRoutes);
+app.use('https://tripwiseai.onrender.com/api/upload', uploadRoutes);
+app.use('https://tripwiseai.onrender.com/api/itineraries', itineraryRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
-app.get('https://your-railway-url.up.railway.app/api/health', (req, res) => {
+app.get('https://tripwiseai.onrender.com/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
